@@ -1,7 +1,12 @@
+var FlashCard = require("./FlashCard.js");
+
+//utility function to replace a character in a string at an index
+//is not defined as part of the prototype
 function replaceAt(baseStr, index, replacement) {
     return baseStr.substr(0, index) + replacement + baseStr.substr(index + replacement.length);
 }
 
+//constructor
 function ClozeCard(text, cloze, multi){
     this.fullText = text;
     this.cloze = cloze;
@@ -22,6 +27,8 @@ function ClozeCard(text, cloze, multi){
         this.errorCodes["102"]();
     }
 }
+ClozeCard.prototype = new FlashCard();
+//recursive search to find first occurence of cloze in a full text
 ClozeCard.prototype.search = function(sent, index, cloze, builtCloze, searchIndex, partial){
     if(builtCloze === cloze){
         this.partial = partial;
@@ -32,7 +39,7 @@ ClozeCard.prototype.search = function(sent, index, cloze, builtCloze, searchInde
                 builtCloze = builtCloze + sent[index];
                 partial = replaceAt(partial, index, "_");
                 return (this.search(sent,(index + 1), cloze, builtCloze, (searchIndex + 1), partial));
-            } else {
+            } else { 
                 return (this.search(sent, ((index + 1) - builtCloze.length), cloze, "", 0, sent));
             }
         } else {
@@ -41,6 +48,8 @@ ClozeCard.prototype.search = function(sent, index, cloze, builtCloze, searchInde
         }
     }
 }
+//iterative function to find all occurences of cloze in a full text (DOES NOT RETURN TRUE/FALSE)
+//returns the partial. A partial that is equivalent to the full text means the cloze could not be found (checked in the constructor)
 ClozeCard.prototype.multiSearch = function(sent, cloze, partial){
     for(var i = 0; i < sent.length; i++){
         if(cloze.length <= (sent.length - (i - (cloze.length - 1)))){
@@ -62,6 +71,19 @@ ClozeCard.prototype.multiSearch = function(sent, cloze, partial){
     }
     this.partial = partial;
 }
+ClozeCard.prototype.checkCloze = function(guess){
+    if(guess === this.cloze){
+        return true;
+    }
+    return false;
+}
+ClozeCard.prototype.printInfo = function(){
+    console.log("Cloze Card");
+    console.log("Full Text: " + this.fullText);
+    console.log("Partial Text: " + this.partial);
+    console.log("Cloze: " + this.cloze);
+}
+//place error codes here. Error codes should throw an error when the associative function is called
 ClozeCard.prototype.errorCodes = {
     "101": function(cloze, fullText){
         throw ("\"" + cloze + "\" could not be found in \"" + fullText + "\"");
@@ -70,4 +92,5 @@ ClozeCard.prototype.errorCodes = {
         throw ("Full Text and Cloze cannot be empty, null, or undefined");
     }
 }
+//export the ClozeCard constructor and its prototype methods
 module.exports = ClozeCard;

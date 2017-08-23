@@ -1,37 +1,36 @@
 var BasicCard = require("./BasicCard.js");
 var ClozeCard = require("./ClozeCard.js");
+var Deck = require("./Deck.js");
 
-// try {
-//     var clozeCard1 = new ClozeCard("Cool Geor George Washington was the first president", "George Washington", false);
-//     console.log(clozeCard1);
-// } catch(error){
-//     console.log(error);
-// }
-
-// try{
-//     var clozeCard2 = new ClozeCard("iiiiiiiiiiiiii", "im", false);
-//     console.log(clozeCard2);
-// } catch(error){
-//     console.log(error);
-// }
+var clozeCard;
+var deck = new Deck("My Deck", []);
 
 try {
-    var clozeCard3 = new ClozeCard("Cool Geor George Washington was the first president", "George Washington", true);
-    console.log(clozeCard3);
+    clozeCard = new ClozeCard("Cool Geor George Washington was the first president", "George Washington", true);
+    console.log(clozeCard);
 } catch(error){
     console.log(error);
 }
 
 try{
-    var clozeCard4 = new ClozeCard("iiiiiiiiiiiiii", "im", true);
-    console.log(clozeCard4);
+    clozeCard = new ClozeCard("iiiiiiiiiiiiii", "im", true);
+    console.log(clozeCard);
 } catch(error){
     console.log(error);
 }
 
 try{
-    var clozeCard5 = new ClozeCard("he George was the 1st president. he George crossed the river", "George", false);
-    console.log(clozeCard5);
+    clozeCard = new ClozeCard("he George was the 1st president. he George crossed the river", "George", false);
+    console.log(clozeCard);
+} catch(error){
+    console.log(error);
+}
+
+try{
+    clozeCard = new ClozeCard("he George was the 1st president. he George crossed the river", "George", true);
+    console.log(clozeCard);
+    deck.addCard(clozeCard);
+    deck.printCards();
 } catch(error){
     console.log(error);
 }
