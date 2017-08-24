@@ -33,6 +33,7 @@ describe("Deck Testing", function(){
         var basicCard = new BasicCard("2+2", "4");
         deck.addCard(clozeCard);
         deck.addCard(basicCard);
+        expect(deck.name).to.equal(":D");
         expect(deck.cards.length).to.equal(2);
         expect(deck.cards[0]).to.equal(clozeCard);
         expect(deck.cards[1]).to.equal(basicCard);

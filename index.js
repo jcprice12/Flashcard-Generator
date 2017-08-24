@@ -1,19 +1,2 @@
-var BasicCard = require("./models/BasicCard.js");
-var ClozeCard = require("./models/ClozeCard.js");
-var Deck = require("./models/Deck.js");
-
-var clozeCard;
-var basicCard;
-var deck = new Deck("My Deck", []);
-
-try{
-    clozeCard = new ClozeCard("this guy (George) was the 1st president. (George) crossed the river", "George", true);
-    basicCard = new BasicCard("2+2", "4");
-    deck.addCard(clozeCard);
-    deck.addCard(basicCard);
-    deck.printCards();
-    deck.removeCard(clozeCard);
-    deck.printCards();
-} catch(error){
-    console.log(error);
-}
+console.log("There is no command-line interface for this app at the moment");
+console.log("To run some tests, type 'npm test' while in the root folder");
