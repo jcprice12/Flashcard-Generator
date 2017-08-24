@@ -4,7 +4,7 @@
   "description": "make flashcards",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/jcprice12/Flashcard-Generator/issues"
   },
-  "homepage": "https://github.com/jcprice12/Flashcard-Generator#readme"
+  "homepage": "https://github.com/jcprice12/Flashcard-Generator#readme",
+  "dependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
+  }
 }

@@ -1,6 +1,6 @@
-var BasicCard = require("./BasicCard.js");
-var ClozeCard = require("./ClozeCard.js");
-var Deck = require("./Deck.js");
+var BasicCard = require("./models/BasicCard.js");
+var ClozeCard = require("./models/ClozeCard.js");
+var Deck = require("./models/Deck.js");
 
 var clozeCard;
 var basicCard;
