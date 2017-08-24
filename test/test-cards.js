@@ -24,6 +24,11 @@ describe("Cloze Card Creation", function(){
         expect(clozeCard.cloze).to.equal("George Washington");
         expect(clozeCard.partial).to.equal("_________________ was the first president of the United States. _________________ had wooden teeth");
     });
+    it("Should fail to create a cloze card", function(){
+        expect(function(){
+            new ClozeCard("George Washington", "Gorge", false);
+        }).to.throw("\"Gorge\" could not be found in \"George Washington\"");
+    });
 });
 
 describe("Deck Testing", function(){
