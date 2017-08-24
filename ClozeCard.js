@@ -71,17 +71,28 @@ ClozeCard.prototype.multiSearch = function(sent, cloze, partial){
     }
     this.partial = partial;
 }
-ClozeCard.prototype.checkCloze = function(guess){
+ClozeCard.prototype.checkCard = function(guess){
     if(guess === this.cloze){
         return true;
     }
     return false;
 }
+ClozeCard.prototype.isEqual = function(card){
+    if(card instanceof ClozeCard
+    && card.fullText === this.fullText
+    && card.cloze === this.cloze){
+        return true;
+    }
+    return false;
+}
 ClozeCard.prototype.printInfo = function(){
+    console.log("");
+    console.log("*************************************************");
     console.log("Cloze Card");
     console.log("Full Text: " + this.fullText);
     console.log("Partial Text: " + this.partial);
     console.log("Cloze: " + this.cloze);
+    console.log("*************************************************");
 }
 //place error codes here. Error codes should throw an error when the associative function is called
 ClozeCard.prototype.errorCodes = {
